@@ -20,9 +20,9 @@ function parseCommandLineArgument() {
     process.exit(-1)
   }
 
-  let outFilePath = `./${Bun.argv[indexOfInFileFlag + 1]}_custom${
-    combine ? '_combined' : ''
-  }.csv`
+  let temp: any = Bun.argv[indexOfInFileFlag + 1].split('/').length
+  const inFileName = Bun.argv[indexOfInFileFlag + 1].split('/')[temp - 1]
+  let outFilePath = `./${inFileName}_custom${combine ? '_combined' : ''}.csv`
 
   let indexOfOutFileFlag = Bun.argv.indexOf('-o')
   if (indexOfOutFileFlag === -1) {
